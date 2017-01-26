@@ -1,0 +1,38 @@
+#!/bin/bash
+
+file="quiz"
+	
+i=0
+while read -r line
+do
+	question[i]=$line	
+    i=$(($i+1))
+done < "$file"
+
+while true
+do
+	#question index
+	i=1
+	for line in "${question[@]}"
+	do
+		clear
+		
+	    echo "Word set: "$line 
+	    echo "======================================="
+	    echo "Your answer"
+	    read -p " Least similar word: " input
+	    echo "-------------------------------------"
+	    echo "BEAGLE's answer"
+	    
+	    temp=$line" "$i
+	    ./OneOfTheseThings $temp
+	    
+	    echo $i" "$input >> demoData
+    	
+    	i=$(($i+1))
+    	
+    	echo "==================================="
+    	
+    	read -n1 -r -p "Press any key to continue..." key
+	done
+done

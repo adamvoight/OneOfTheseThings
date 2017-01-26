@@ -1,0 +1,19 @@
+#!/bin/bash
+
+while true
+do
+	clear
+	
+    read -p "Word set: " line 
+    echo "======================================="
+    echo "Your answer"
+    read -p " Least similar word: " input
+    echo "-------------------------------------"
+    echo "BEAGLE's answer"
+    
+    ./OneOfTheseThingsNoWrite $line
+   	
+   	echo "==================================="
+   	
+   	read -n1 -r -p "Press any key to continue..." key
+done

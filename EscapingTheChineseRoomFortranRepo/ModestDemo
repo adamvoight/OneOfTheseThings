@@ -1,0 +1,11 @@
+#!/bin/bash
+
+clear
+while true
+do
+
+	read -p "Next word or [ctrl+c] to exit: " word
+	clear
+	./ModestNeigh $word 20
+
+done

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "Installing library..."
+sudo cp libdfftpack.a /usr/local/lib
+
+echo "Setting permissions..."
+sudo chmod u=rwx /usr/local/lib/libdfftpack.a
+sudo chmod u=rwx rebuild
+
+echo "Building..."
+gfortran -c Number_Generators.f95
+gfortran -c Reading_Tools.f95
+gfortran -c Signal_Tools.f95
+
+gfortran PBEAGLE.f95 Reading_Tools.f95 Number_Generators.f95 Signal_Tools.f95 -L /usr/lib/dfftpack -ldfftpack -o learn
+
+gfortran Neighbors.f95 -o Neighbors
+
+gfortran OneOfTheseThings.f95 -o OneOfTheseThings
+
+gfortran OneOfTheseThingsNoWrite.f95 -o OneOfTheseThingsNoWrite
+
+echo "Done"

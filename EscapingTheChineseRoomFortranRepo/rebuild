@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo "Deleting old files..."
+rm *.mod
+rm *.o
+rm Neighbors
+rm OneOfTheseThings
+rm OneOfTheseThingsNoWrite
+rm learn
+
+echo "Building..."
+
+gfortran -c Number_Generators.f95
+gfortran -c Reading_Tools.f95
+gfortran -c Signal_Tools.f95
+
+gfortran PBEAGLE.f95 Reading_Tools.f95 Number_Generators.f95 Signal_Tools.f95 -L /usr/lib/dfftpack -ldfftpack -o learn
+
+gfortran Neighbors.f95 -o Neighbors
+
+gfortran OneOfTheseThings.f95 -o OneOfTheseThings
+
+gfortran OneOfTheseThingsNoWrite.f95 -o OneOfTheseThingsNoWrite
+
+gfortran ModestNeigh.f95 -o ModestNeigh
+
+echo "Done"
